@@ -9,6 +9,9 @@
 - Поиск находит деталь по номеру чертежа в любом написании
 - Twitter и Facebook удалены полностью, добавлены MAX, Telegram и WhatsApp
 
+**Принимаете проект — начните с [docs/HANDOFF.md](docs/HANDOFF.md):** там состояние,
+порядок дальнейших шагов и грабли, на которые уже наступили.
+
 Подробности аудита старого сайта — в [docs/AUDIT.md](docs/AUDIT.md).
 Что нужно получить от заказчика — в [docs/CLIENT-REQUESTS.md](docs/CLIENT-REQUESTS.md).
 Чеклист перед релизом — в [docs/CHECKLIST.md](docs/CHECKLIST.md).
