@@ -1,0 +1,179 @@
+{
+  "site_url": "https://masterskie174.ru",
+  "title_suffix": "ЗДСО",
+  "menu": [
+    {
+      "url": "/catalog/",
+      "label": "Каталог",
+      "children": "catalog"
+    },
+    {
+      "url": "/tehnika/",
+      "label": "Техника",
+      "children": "tehnika"
+    },
+    {
+      "url": "/services/",
+      "label": "Услуги",
+      "children": "services"
+    },
+    {
+      "url": "/price/",
+      "label": "Прайс-лист",
+      "children": [
+        {
+          "url": "/price/drobilki-shchekovye/",
+          "label": "Дробилки щековые"
+        },
+        {
+          "url": "/price/drobilki-konusnye/",
+          "label": "Дробилки конусные"
+        }
+      ]
+    },
+    {
+      "url": "/company/",
+      "label": "Компания",
+      "children": [
+        {
+          "url": "/company/",
+          "label": "Технические возможности"
+        },
+        {
+          "url": "/company/production/",
+          "label": "Производство"
+        },
+        {
+          "url": "/company/certificates/",
+          "label": "Сертификаты"
+        },
+        {
+          "url": "/company/partners/",
+          "label": "Партнёры"
+        },
+        {
+          "url": "/company/reviews/",
+          "label": "Отзывы клиентов"
+        },
+        {
+          "url": "/company/staff/",
+          "label": "Отдел продаж"
+        },
+        {
+          "url": "/company/requisites/",
+          "label": "Реквизиты"
+        },
+        {
+          "url": "/company/vacancy/",
+          "label": "Вакансии"
+        }
+      ]
+    },
+    {
+      "url": "/info/",
+      "label": "Информация",
+      "children": [
+        {
+          "url": "/info/articles/",
+          "label": "База знаний"
+        },
+        {
+          "url": "/info/news/",
+          "label": "Новости и отгрузки"
+        },
+        {
+          "url": "/info/stock/",
+          "label": "Спецпредложения"
+        },
+        {
+          "url": "/info/faq/",
+          "label": "Вопрос-ответ"
+        },
+        {
+          "url": "/projects/",
+          "label": "Кейсы"
+        }
+      ]
+    },
+    {
+      "url": "/delivery/",
+      "label": "Доставка и оплата"
+    },
+    {
+      "url": "/contacts/",
+      "label": "Контакты"
+    }
+  ],
+  "footer_columns": [
+    {
+      "label": "Каталог",
+      "links": [
+        {
+          "url": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-drobilok/",
+          "label": "Запчасти для дробилок"
+        },
+        {
+          "url": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-grokhotov/setka-riflenaya-dlya-grokhotov/",
+          "label": "Сетка рифлёная для грохотов"
+        },
+        {
+          "url": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-pitately/",
+          "label": "Запчасти для питателей"
+        },
+        {
+          "url": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-abz/",
+          "label": "Запчасти для АБЗ"
+        },
+        {
+          "url": "/catalog/futerovochnye-bolty-bronebolty/",
+          "label": "Футеровочные болты"
+        },
+        {
+          "url": "/catalog/drobilno-sortirovochnoe-oborudovanie/",
+          "label": "Оборудование"
+        }
+      ]
+    },
+    {
+      "label": "Техника",
+      "links": "tehnika"
+    },
+    {
+      "label": "Услуги",
+      "links": "services"
+    },
+    {
+      "label": "Компания",
+      "links": [
+        {
+          "url": "/company/",
+          "label": "Технические возможности"
+        },
+        {
+          "url": "/company/production/",
+          "label": "Производство"
+        },
+        {
+          "url": "/company/requisites/",
+          "label": "Реквизиты"
+        },
+        {
+          "url": "/delivery/",
+          "label": "Доставка и оплата"
+        },
+        {
+          "url": "/info/articles/",
+          "label": "База знаний"
+        },
+        {
+          "url": "/contacts/",
+          "label": "Контакты"
+        },
+        {
+          "url": "/sitemap/",
+          "label": "Карта сайта"
+        }
+      ]
+    }
+  ]
+}

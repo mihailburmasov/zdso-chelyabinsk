@@ -1,0 +1,7 @@
+/dist/
+/storage/
+app/config.local.php
+app/config.server.php
+app/deploy.local.php
+node_modules/
+*.log

@@ -1,0 +1,17 @@
+# Переводы строк — LF, как на сервере: иначе сверка с хостингом видит все файлы
+# изменёнными, а md5-версии css и js в ссылках меняются на пустом месте.
+* text=auto eol=lf
+
+# Двоичное не трогаем
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.JPG binary
+*.JPEG binary
+*.gif binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff2 binary
+*.pdf binary
+*.zip binary

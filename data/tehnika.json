@@ -1,0 +1,148 @@
+[
+  {
+    "slug": "smd-108a",
+    "name": "СМД-108А",
+    "kind": "Щековая дробилка",
+    "aliases": [
+      "СМД-108",
+      "СМД 108",
+      "SMD-108A",
+      "СМД-108А-Р",
+      "ЩДП"
+    ],
+    "parts_section": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-drobilok/drobilki-shchekovye/smd-108a/",
+    "equipment_url": "/catalog/drobilno-sortirovochnoe-oborudovanie/drobilki/shchekovye-drobilki/smd-108a-r/",
+    "intro": "Щековая дробилка СМД-108А — машина первичного дробления прочных и средней прочности пород. Изнашиваемые детали в ней — дробящие плиты, распорная плита, клинья крепления плит, сухари и регулировочный клин; они меняются по регламенту чаще остальных узлов. Ниже — полная номенклатура запчастей к СМД-108А с номерами чертежей, массой и количеством на машину.",
+    "ttx_pending": true
+  },
+  {
+    "slug": "smd-109a",
+    "name": "СМД-109А",
+    "kind": "Щековая дробилка",
+    "aliases": [
+      "СМД-109",
+      "СМД 109",
+      "SMD-109A",
+      "СМД-109А-Р"
+    ],
+    "parts_section": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-drobilok/drobilki-shchekovye/smd-109a/",
+    "equipment_url": "/catalog/drobilno-sortirovochnoe-oborudovanie/drobilki/shchekovye-drobilki/smd-109a-r/",
+    "intro": "Щековая дробилка СМД-109А крупнее СМД-108А: дробящие плиты весят 488 и 520 кг против 260 и 292 кг, щека в сборе — 5632 кг. Часть крепежа и мелких деталей у двух машин общая, поэтому в каталоге одни и те же номера чертежей встречаются и там, и здесь. Ниже — номенклатура запчастей именно к СМД-109А.",
+    "ttx_pending": true
+  },
+  {
+    "slug": "smd-110a",
+    "name": "СМД-110А",
+    "kind": "Щековая дробилка",
+    "aliases": [
+      "СМД-110",
+      "СМД 110",
+      "SMD-110A",
+      "СМД-110А-Р"
+    ],
+    "parts_section": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-drobilok/drobilki-shchekovye/smd-110a/",
+    "equipment_url": "/catalog/drobilno-sortirovochnoe-oborudovanie/drobilki/shchekovye-drobilki/smd-110a-r/",
+    "intro": "СМД-110А — самая крупная щековая дробилка из трёх: станина 7150 кг, щека в сборе 9230 кг, дробящие плиты 865 и 920 кг. Для неё изготавливаем плиты как стандартного исполнения, так и с увеличенным зубом. Ниже — полный перечень запчастей с номерами чертежей и массой.",
+    "ttx_pending": true
+  },
+  {
+    "slug": "dro-592-ksd-600",
+    "name": "ДРО-592 (КСД-600)",
+    "kind": "Конусная дробилка",
+    "aliases": [
+      "КСД-600",
+      "КСД 600",
+      "ДРО-592",
+      "ДРО 592",
+      "KSD-600"
+    ],
+    "parts_section": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-drobilok/drobilki-konusnye/dro-592-ksd-600/",
+    "equipment_url": "/catalog/drobilno-sortirovochnoe-oborudovanie/drobilki/konusnye-drobilki/dro-592-ksd-600/",
+    "intro": "Конусная дробилка КСД-600 (заводское обозначение ДРО-592) — машина среднего дробления. Основной расходник — брони: конус подвижный 1059204001 (297-4-0-1) и конус неподвижный 1029702102 (297-2-1-2). Ниже — вся номенклатура по этой машине: от броней и подпятников до крепежа и уплотнений.",
+    "ttx_pending": true
+  },
+  {
+    "slug": "smd-120a-ksd-900",
+    "name": "СМД-120А (КСД-900)",
+    "kind": "Конусная дробилка",
+    "aliases": [
+      "КСД-900",
+      "КСД 900",
+      "КМД-900",
+      "СМД-120А",
+      "СМД-120АТ",
+      "СМД 120",
+      "KSD-900",
+      "KMD-900"
+    ],
+    "parts_section": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-drobilok/drobilki-konusnye/smd-120a-ksd-900/",
+    "equipment_url": "/catalog/drobilno-sortirovochnoe-oborudovanie/drobilki/konusnye-drobilki/smd-120a-r-ksd-900/",
+    "intro": "СМД-120А-Р (КСД-900) и СМД-120А-Т (КМД-900) — конусные дробилки среднего и мелкого дробления на одной базе. Брони для КСД-900 и КМД-900 отливаем из марганцовистой стали 110Г13Л — в том числе по чертежам заказчика. Ниже — полная номенклатура запчастей.",
+    "ttx_pending": true
+  },
+  {
+    "slug": "ksd-1200-i-kmd-1200",
+    "name": "КСД-1200 и КМД-1200",
+    "kind": "Конусная дробилка",
+    "aliases": [
+      "КСД-1200",
+      "КМД-1200",
+      "КСД 1200",
+      "КМД 1200",
+      "КСД-1200Гр",
+      "КСД-1200Т",
+      "КМД-1200Гр",
+      "КМД-1200Т"
+    ],
+    "parts_section": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-drobilok/drobilki-konusnye/ksd-1200-i-kmd-1200/",
+    "equipment_url": "/catalog/drobilno-sortirovochnoe-oborudovanie/drobilki/konusnye-drobilki/ksd-1200gr/",
+    "intro": "КСД-1200 и КМД-1200 — конусные дробилки среднего и мелкого дробления в исполнениях Гр (грубого) и Т (тонкого). Детали у двух машин в значительной части общие, поэтому номенклатура сведена в один раздел — смотрите по номеру чертежа. Брони и футеровки на эти машины изготавливаем на собственном литейном производстве.",
+    "ttx_pending": true
+  },
+  {
+    "slug": "pitatel-p-804",
+    "name": "П-804 (104920-10)",
+    "kind": "Питатель пластинчатый",
+    "aliases": [
+      "П-804",
+      "П 804",
+      "104920-10",
+      "питатель П-804"
+    ],
+    "parts_section": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-pitately/pitatel-plastinchatyy-p-804-104920-10/",
+    "intro": "Пластинчатый питатель П-804 (104920-10) подаёт материал на дробилку из бункера. Изнашивается прежде всего полотно: пластины 4820904204 (227-4-20-1) и 4820904205 (227-4-20-2) и пластинчатая цепь полотна. Эти позиции изготавливаем на собственном производстве, в том числе по чертежам заказчика.",
+    "ttx_pending": true
+  },
+  {
+    "slug": "pitatel-tk-16a",
+    "name": "ТК-16А (ДРО-604)",
+    "kind": "Питатель пластинчатый",
+    "aliases": [
+      "ТК-16А",
+      "ТК 16А",
+      "ТК-16",
+      "ДРО-604",
+      "ДРО 604",
+      "ТК15А"
+    ],
+    "parts_section": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-pitately/pitatel-plastinchatyy-tk-16a-dro-604/",
+    "intro": "Пластинчатый питатель ТК-16А (ДРО-604) — тяжёлый питатель под крупный кусок. У большинства деталей два обозначения: заводское (1060411001) и по старой документации ТК15А (ТК15А-01-201) — поиск по сайту находит деталь по любому из них. Ниже — вся номенклатура: полотно, валы, звёздочки, ролики, бункер.",
+    "ttx_pending": true
+  },
+  {
+    "slug": "ds-158-ds-185",
+    "name": "ДС-158 и ДС-185",
+    "kind": "Оборудование АБЗ",
+    "aliases": [
+      "ДС-158",
+      "ДС-185",
+      "ДС 158",
+      "ДС 185",
+      "АБЗ",
+      "асфальтобетонный завод"
+    ],
+    "parts_section": "/catalog/zapasnye-chasti-i-komplektuyushchie/zapchasti-dlya-abz/zapchasti-dlya-ds-158-ds-185/",
+    "intro": "ДС-158 и ДС-185 — асфальтосмесительные установки. Расходники здесь — бронелисты и броневые листы смесителя, сектора брони, лопасти и стойки. Изготавливаем по чертежам ДС-158-45-10-xxx и ДС-185-45-12-xxx; марки стали литейного производства — 110Г13Л, 15…45Л, 20…45ГЛ, ИЧХ16.",
+    "ttx_pending": true
+  }
+]
