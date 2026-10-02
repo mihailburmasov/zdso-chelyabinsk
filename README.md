@@ -31,8 +31,20 @@ data/*.json  ──►  php app/bin/build.php  ──►  dist/ (готовый 
 - **`main`** — реальный деливерабл: пути от корня домена, как для боевого хостинга.
   Именно эту ветку разворачивают у клиента (`php app/bin/deploy.php init`).
 - **`gh-pages`** — только демо для показа: https://mihailburmasov.github.io/zdso-chelyabinsk/
-  Пересобирается автоматически из `main` через GitHub Actions
-  (`.github/workflows/deploy-pages.yml`), руками её не правят.
+  Руками её не правят: она собирается из `main`.
+
+**Автосборка демо пока не подключена.** Файл `.github/workflows/deploy-pages.yml`
+лежит в рабочей копии, но не в репозитории: у токена `gh` нет права `workflow`,
+и GitHub отклоняет пуш файлов из `.github/workflows/`. Чтобы включить автосборку,
+один раз выдайте это право и запушьте файл:
+
+```bash
+gh auth refresh -h github.com -s workflow
+git add .github && git commit -m "Автосборка демо на GitHub Pages" && git push
+```
+
+До этого демо обновляется вручную — командой из блока ниже, после чего содержимое
+`OUT_DIR` пушится в ветку `gh-pages`.
 
 **Что в демо не работает и почему.** GitHub Pages — статический хостинг без PHP,
 поэтому там не работают форма заявки (`lead.php`), обработчик 404 и правила
