@@ -182,7 +182,7 @@ function webmanifest_json(): string
         'scope' => href('/'),
         'display' => 'browser',
         'background_color' => '#ffffff',
-        'theme_color' => '#1A1D21',
+        'theme_color' => '#ffffff',
         'icons' => [
             ['src' => href('/favicon.svg'), 'sizes' => 'any', 'type' => 'image/svg+xml'],
             ['src' => href('/img/icon-192.png'), 'sizes' => '192x192', 'type' => 'image/png'],
@@ -243,12 +243,12 @@ function error_500_html(): string
 <meta name="robots" content="noindex, nofollow">
 <title>Сайт временно недоступен — {$brand}</title>
 <style>
-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#1a1d21;color:#fff;
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0f4a96;color:#fff;
        font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;padding:24px}
   .b{max-width:560px;text-align:center}
   h1{font-size:1.6rem;margin:0 0 12px}
-  p{color:#c9d2da}
-  a{color:#e8761a;font-weight:700}
+  p{color:#dcebfb}
+  a{color:#ffb36b;font-weight:700}
 </style>
 </head>
 <body>

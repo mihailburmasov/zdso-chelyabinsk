@@ -190,7 +190,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 .logo__t { display: none; flex-direction: column; line-height: 1.15; max-width: 210px; padding-left: 12px; border-left: 2px solid var(--line); }
 .logo__t b { font-size: .8rem; font-weight: 700; color: var(--ink); }
 .logo__t span { font-size: .66rem; font-weight: 600; color: var(--brand-700); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
-@media (min-width: 600px) { .logo__t { display: flex; } }
+@media (min-width: 768px) { .logo__t { display: flex; } }
 
 .hdr__spacer { flex: 1 1 auto; }
 .hdr__tel { display: none; font-weight: 700; white-space: nowrap; }
@@ -606,6 +606,7 @@ body.has-mbar { padding-bottom: 56px; }
 .ftr__brand b { color: var(--ink); font-size: 1.05rem; }
 .ftr__contact { font-size: .92rem; }
 .ftr__contact a[href^="tel"] { font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+.section--brand .ftr__contact a, .section--brand .form--dark .consent a { color: #fff; }
 .ftr__msg { display: flex; gap: 8px; margin: 12px 0; }
 .ftr__bottom { border-top: 1px solid var(--brand-100); margin-top: 28px; padding: 16px 0 20px;
   display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; font-size: .82rem; color: var(--ink-mute); }
