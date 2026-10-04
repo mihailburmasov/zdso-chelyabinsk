@@ -167,7 +167,7 @@ function bg_picture(string $name, string $class, array $o = []): string
 }
 
 /** Полоса с фотографией под шапкой внутренних страниц: фото и подпись — по разделу сайта. */
-function page_band(string $path, bool $slim = false): string
+function page_band(string $path, bool $slim = false, bool $search = true): string
 {
     static $map = [
         'catalog'  => ['catalog', 'Каталог запчастей', 'Детали к дробилкам, грохотам и питателям — с номерами чертежей'],
@@ -182,10 +182,14 @@ function page_band(string $path, bool $slim = false): string
     ];
     [$img, $title, $sub] = $map[edit_route($path)] ?? $map['pages'];
     if (str_starts_with($path, '/info/') && !str_starts_with($path, '/info/news/')) [$img, $title, $sub] = $map['articles'];
-    return '<div class="pband' . ($slim ? ' pband--slim' : '') . '" aria-hidden="true">'
+    // Подпись — оформление (aria-hidden). Поиск справа — рабочий: он заменяет строку поиска,
+    // которой больше нет в шапке. На узких экранах его прячет CSS — там лупа в шапке и кнопка «Поиск» внизу.
+    return '<div class="pband' . ($slim ? ' pband--slim' : '') . '">'
         . bg_picture($img, 'pband__bg', ['eager' => true])
-        . '<div class="container pband__in"><span class="pband__t">' . esc($title) . '</span>'
-        . ($slim ? '' : '<span class="pband__s">' . esc($sub) . '</span>') . '</div></div>';
+        . '<div class="container pband__in"><div class="pband__text" aria-hidden="true"><span class="pband__t">' . esc($title) . '</span>'
+        . ($slim ? '' : '<span class="pband__s">' . esc($sub) . '</span>') . '</div>'
+        . ($search ? '<div class="pband__search">' . search_widget('band-search', 'Номер чертежа, артикул или модель') . '</div>' : '')
+        . '</div></div>';
 }
 
 /** Размеры картинки из public/ — чтобы в вёрстке всегда были width и height. */
@@ -704,7 +708,7 @@ function shell(array $o): string
     $h .= metrika_html();
     $h .= '<a class="skip-link" href="#main">К основному содержанию</a>' . "\n";
     $h .= site_header($path);
-    $h .= '<main id="main">' . ($path === '/' ? '' : page_band($path, ($o['ogType'] ?? '') === 'product')) . $o['body'] . '</main>';
+    $h .= '<main id="main">' . ($path === '/' ? '' : page_band($path, ($o['ogType'] ?? '') === 'product', !str_contains($o['body'], 'data-search-input'))) . $o['body'] . '</main>';
     $h .= site_footer();
     $h .= floating_contact();
     $h .= modal_html();
@@ -736,7 +740,7 @@ function critical_css(): string
         . '.logo{display:flex;align-items:center;gap:10px;font-weight:800}'
         . '.logo__img{width:auto;height:36px}'
         . '.hero{position:relative;overflow:hidden;background:var(--brand-800);color:#fff;padding:32px 0 36px}'
-        . '.pband{position:relative;overflow:hidden;background:var(--brand-800);min-height:120px}'
+        . '.pband{position:relative;background:var(--brand-800);min-height:120px}'
         . 'h1{margin:0 0 .5em;font-weight:800;line-height:1.15;font-size:clamp(1.6rem,1.25rem + 1.8vw,2.6rem)}'
         . '.hero h1{color:#fff}'
         . '[hidden]{display:none!important}';
