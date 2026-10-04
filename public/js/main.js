@@ -18,6 +18,16 @@
     if (el) goal(el.getAttribute('data-goal'));
   }, true);
 
+  /* ---------------- шапка: высота для закреплённых блоков ---------------- */
+  // Шапка закреплена (sticky) и на десктопе вместе с поиском и меню заметно выше --head-h.
+  // Реальную высоту отдаём в --hdr-h: по ней встают фильтры каталога и якоря.
+  var hdr = $(".hdr");
+  if (hdr) {
+    var setHdrH = function () { document.documentElement.style.setProperty("--hdr-h", hdr.offsetHeight + "px"); };
+    setHdrH();
+    if (window.ResizeObserver) new ResizeObserver(setHdrH).observe(hdr); else window.addEventListener("resize", setHdrH);
+  }
+
   /* ---------------- шапка: меню и поиск ---------------- */
   var mnav = $('[data-mnav]');
   function setMenu(open) {

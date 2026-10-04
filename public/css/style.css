@@ -61,6 +61,9 @@
   --brand-100: #dcebfb;
   --brand-50:  #eef5fd;
 
+  /* фирменный градиент MAX — из официального логотипа */
+  --max-grad: linear-gradient(135deg, #44ccff 0%, #5533ee 66%, #9933dd 100%);
+
   --amber-700: #b85c0f;
   --amber-600: #d26a14;
   --amber-500: #e8761a;
@@ -97,7 +100,7 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; font-family: var(--font); font-size: 16px; line-height: 1.55;
-  color: var(--ink); background: var(--paper); overflow-x: hidden;
+  color: var(--ink); background: var(--paper); overflow-x: clip;
   font-variant-numeric: tabular-nums lining-nums;
 }
 [hidden] { display: none !important; }
@@ -125,6 +128,8 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 .skip-link:focus { left: 8px; top: 8px; padding: 10px 14px; background: var(--paper); color: var(--ink); box-shadow: var(--shadow-up); }
 
 .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut); }
+/* якоря (#zayavka и т. п.) не прячутся под закреплённую шапку */
+[id] { scroll-margin-top: calc(var(--hdr-h, var(--head-h)) + 12px); }
 .section { padding: 40px 0; }
 .section--tight { padding: 24px 0; }
 .section--alt { background: var(--paper-alt); }
@@ -209,10 +214,11 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 .ftr .icon-btn { background: #fff; box-shadow: 0 0 0 1px var(--brand-100); }
 .hdr .icon-btn--wa:hover, .mnav .icon-btn--wa:hover, .ftr .icon-btn--wa:hover { background: #1f8a4c; color: #fff; }
 .hdr .icon-btn--tg:hover, .mnav .icon-btn--tg:hover, .ftr .icon-btn--tg:hover { background: #2b7fb8; color: #fff; }
+.hdr .icon-btn--max:hover, .mnav .icon-btn--max:hover, .ftr .icon-btn--max:hover { background: var(--max-grad); color: #fff; }
 
 .icon-btn--wa:hover { background: #1f8a4c; }
 .icon-btn--tg:hover { background: #2b7fb8; }
-.icon-btn--max:hover { background: var(--amber-600); }
+.icon-btn--max:hover { background: var(--max-grad); color: #fff; }
 .hdr__search-btn, .hdr__burger { display: inline-flex; }
 @media (min-width: 1200px) { .hdr__burger { display: none; } }
 
@@ -357,7 +363,7 @@ a.card:hover { border-color: var(--steel-400); box-shadow: var(--shadow); text-d
 @media (min-width: 992px) { .cat { grid-template-columns: 276px minmax(0,1fr); gap: 32px; align-items: start; } }
 
 .filters { background: var(--paper-alt); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 14px; }
-@media (min-width: 992px) { .filters { position: sticky; top: calc(var(--head-h) + 12px); max-height: calc(100vh - var(--head-h) - 24px); overflow-y: auto; } }
+@media (min-width: 992px) { .filters { position: sticky; top: calc(var(--hdr-h, var(--head-h)) + 12px); max-height: calc(100vh - var(--hdr-h, var(--head-h)) - 24px); overflow-y: auto; } }
 .filters h2 { font-size: .95rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-mute); }
 .fgroup { border-top: 1px solid var(--line); padding: 12px 0 4px; }
 .fgroup:first-of-type { border-top: 0; }
@@ -464,7 +470,7 @@ a.card:hover { border-color: var(--steel-400); box-shadow: var(--shadow); text-d
 
 .msgbtn--wa { background: #25a35a; }
 .msgbtn--tg { background: #2f8fcc; }
-.msgbtn--max { background: var(--graphite-600); }
+.msgbtn--max { background: var(--max-grad); }
 .msgbtn--off { background: var(--steel-200); color: var(--steel-700); cursor: not-allowed; }
 .msgbtn--off:hover { color: var(--steel-700); filter: none; }
 
@@ -578,7 +584,7 @@ dialog.modal::backdrop { background: rgba(20,23,26,.6); }
 
 .fab .fab--wa { background: #25a35a; }
 .fab .fab--tg { background: #2f8fcc; }
-.fab .fab--max { background: var(--graphite-700); }
+.fab .fab--max { background: var(--max-grad); }
 .fab .fab--call { background: var(--amber-500); }
 
 .mbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 350; display: flex;
@@ -637,6 +643,7 @@ body[data-page="/"] .hdr__search { display: none; }
 body[data-page="/"] .hdr__search.is-open { display: block; }
 
 /* ---------- 20. Защита от горизонтального выезда на узких экранах ---------- */
+/* clip, а не hidden: hidden у body делает его контейнером прокрутки, и закреплённая шапка (sticky) уезжает со страницей */
 html { overflow-x: clip; }
 h1, h2, h3, .pitem__name, .drawbox__v, .spec td, .spec th, .tile b { overflow-wrap: break-word; }
 .msgrow { grid-template-columns: repeat(auto-fit, minmax(min(96px, 100%), 1fr)); }

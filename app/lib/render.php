@@ -727,7 +727,7 @@ function critical_css(): string
     return ':root{--brand-600:#1a6fd6;--brand-800:#0f4a96;--amber-500:#e8761a;--steel-200:#c9d2da;--steel-400:#7d8c9b;--head-h:60px;--gut:16px;--max:1320px}'
         . '@media(min-width:768px){:root{--gut:24px;--head-h:72px}}'
         . '*,*::before,*::after{box-sizing:border-box}'
-        . 'body{margin:0;font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.55;color:#16191c;background:#fff;overflow-x:hidden}'
+        . 'body{margin:0;font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.55;color:#16191c;background:#fff;overflow-x:clip}'
         . '.container{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}'
         . '.hdr{position:sticky;top:0;z-index:400;background:#fff;color:#16191c;box-shadow:0 1px 0 #dde3e9}'
         . '.hdr a{color:#16191c;text-decoration:none}'
