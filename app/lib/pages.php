@@ -58,7 +58,7 @@ function page_home(): void
     $p = S::$pages['home'];
     $c = S::$company;
 
-    $b = '<section class="hero"><div class="container">';
+    $b = '<section class="hero">' . bg_picture('hero', 'hero__bg', ['eager' => true, 'alt' => 'Дробильно-сортировочный комплекс']) . '<div class="container">';
     $b .= '<div class="hero__grid"><div>';
     $b .= '<h1>' . esc($p['h1']) . '</h1>';
     $b .= '<p class="hero__lead">' . esc($p['lead']) . '</p>';
@@ -106,6 +106,14 @@ function page_home(): void
     // Производство
     $b .= '<section class="section section--alt"><div class="container"><div class="section__head"><h2>Производство, а не перепродажа</h2>'
         . '<a class="section__more" href="' . href('/company/production/') . '">О производстве ' . icon('arrow') . '</a></div>';
+    $b .= '<ul class="photos">' . join_map([
+        ['pr-workshop', 'Производственный цех'],
+        ['pr-casting', 'Литейное производство: заливка форм'],
+        ['pr-plate', 'Дробящая плита щековой дробилки'],
+        ['pr-cone', 'Брони конусной дробилки'],
+        ['pr-sieve', 'Плетение рифлёной сетки'],
+        ['pr-plant', 'Дробильно-сортировочный комплекс'],
+    ], fn($x) => '<li>' . bg_picture($x[0], 'photos__img', ['alt' => $x[1], 'sizes' => '(min-width: 992px) 33vw, (min-width: 600px) 50vw, 100vw']) . '<span>' . esc($x[1]) . '</span></li>') . '</ul>';
     $b .= '<div class="grid grid--2">' . join_map($p['intro_blocks'], fn($x) => '<div class="card"><h3>' . esc($x['h']) . '</h3><p>' . esc($x['text']) . '</p></div>') . '</div>';
     $b .= '</div></section>';
 

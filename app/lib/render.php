@@ -141,6 +141,53 @@ function json_ld($o): string { return str_replace('<', '\\u003c', (string)json_e
 function join_map(array $list, callable $fn, string $sep = ''): string { return implode($sep, array_map($fn, $list, array_keys($list))); }
 function nbsp(string $s): string { return str_replace(' — ', ' — ', $s); }
 
+/**
+ * Фоновое фото оформления из public/img/bg (готовит tools/make-site-photos.php):
+ * все ширины файла <name>-<w>.webp идут в srcset, самая узкая jpg — запасной вариант.
+ */
+function bg_picture(string $name, string $class, array $o = []): string
+{
+    static $cache = [];
+    if (!isset($cache[$name])) {
+        $dir = rtrim((string)cfg('public_dir'), '/\\') . '/img/bg/';
+        $ws = [];
+        foreach (glob($dir . $name . '-*.webp') ?: [] as $f) {
+            if (preg_match('/-(\d+)\.webp$/', $f, $m)) $ws[] = (int)$m[1];
+        }
+        sort($ws);
+        $cache[$name] = $ws;
+    }
+    $ws = $cache[$name];
+    if (!$ws) return '';
+    $srcset = implode(', ', array_map(fn($w) => href('/img/bg/' . $name . '-' . $w . '.webp') . ' ' . $w . 'w', $ws));
+    $fallback = $ws[min(1, count($ws) - 1)];
+    $attrs = !empty($o['eager']) ? ' fetchpriority="high" decoding="async"' : ' loading="lazy" decoding="async"';
+    return '<picture class="' . esc($class) . '"><source type="image/webp" srcset="' . $srcset . '" sizes="' . esc($o['sizes'] ?? '100vw') . '">'
+        . '<img src="' . href('/img/bg/' . $name . '-' . $fallback . '.jpg') . '" alt="' . esc($o['alt'] ?? '') . '"' . $attrs . '></picture>';
+}
+
+/** Полоса с фотографией под шапкой внутренних страниц: фото и подпись — по разделу сайта. */
+function page_band(string $path, bool $slim = false): string
+{
+    static $map = [
+        'catalog'  => ['catalog', 'Каталог запчастей', 'Детали к дробилкам, грохотам и питателям — с номерами чертежей'],
+        'tehnika'  => ['tehnika', 'Техника и запчасти к ней', 'Щековые и конусные дробилки, грохоты, питатели'],
+        'services' => ['services', 'Услуги производства', 'Литьё, механообработка, ремонт дробилок и питателей, плетение сетки'],
+        'news'     => ['info', 'Новости и отгрузки', 'Что делаем и куда отправляем'],
+        'articles' => ['info', 'База знаний', 'Как выбрать, заменить и продлить срок службы деталей'],
+        'price'    => ['price', 'Прайс-лист', 'Цены на запчасти от производителя'],
+        'company'  => ['company', 'О заводе', 'Собственное производство в Челябинске с 2003 года'],
+        'contacts' => ['contacts', 'Контакты', 'Челябинск · отгрузка по всей России'],
+        'pages'    => ['pages', 'Завод ДСО', 'Запчасти для дробильно-сортировочного оборудования'],
+    ];
+    [$img, $title, $sub] = $map[edit_route($path)] ?? $map['pages'];
+    if (str_starts_with($path, '/info/') && !str_starts_with($path, '/info/news/')) [$img, $title, $sub] = $map['articles'];
+    return '<div class="pband' . ($slim ? ' pband--slim' : '') . '" aria-hidden="true">'
+        . bg_picture($img, 'pband__bg', ['eager' => true])
+        . '<div class="container pband__in"><span class="pband__t">' . esc($title) . '</span>'
+        . ($slim ? '' : '<span class="pband__s">' . esc($sub) . '</span>') . '</div></div>';
+}
+
 /** Размеры картинки из public/ — чтобы в вёрстке всегда были width и height. */
 function img_dims(string $path): array
 {
@@ -303,7 +350,7 @@ function cta_block(array $o = []): string
 {
     $title = $o['title'] ?? 'Нужна деталь или расчёт?';
     $text = $o['text'] ?? 'Пришлите номер чертежа, фото бирки или чертёж — ответим с ценой, наличием и сроком изготовления.';
-    return '<section class="section section--dark" id="zayavka"><div class="container">
+    return '<section class="section section--brand" id="zayavka">' . bg_picture('pages', 'section--brand__bg') . '<div class="container">
   <div class="hero__grid">
     <div>
       <h2>' . esc($title) . '</h2>
@@ -336,9 +383,9 @@ function site_header(string $current): string
     $h = '<header class="hdr"><div class="container">';
     $h .= '<div class="hdr__top">';
     $h .= '<a class="logo" href="' . href('/') . '" aria-label="Завод ДСО — на главную">'
-        . '<svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="7" fill="#E8761A"/>'
-        . '<path fill="#14171A" d="M9 11h8.6c5.3 0 8.9 3.5 8.9 9s-3.6 9-8.9 9H9zm4.6 4v10h3.7c2.9 0 4.6-1.9 4.6-5s-1.7-5-4.6-5zM28.5 11H32v18h-3.5z"/></svg>'
-        . '<span class="logo__t"><b>Завод ДСО</b><span>Челябинск · с 2003 года</span></span></a>';
+        . '<picture><source type="image/webp" srcset="' . href('/img/logo-164.webp') . ' 1x, ' . href('/img/logo-328.webp') . ' 2x">'
+        . '<img class="logo__img" src="' . href('/img/logo-164.png') . '" srcset="' . href('/img/logo-328.png') . ' 2x" width="164" height="46" alt="ДСО"></picture>'
+        . '<span class="logo__t"><b>Завод дробильно-сортировочного оборудования</b><span>Челябинск · с 2003 года</span></span></a>';
     $h .= '<span class="hdr__spacer"></span>';
     $h .= '<button type="button" class="icon-btn hdr__search-btn" data-toggle-search aria-label="Поиск по номеру чертежа" aria-expanded="false">' . icon('search') . '</button>';
     $h .= messenger_icons('hdr__msg');
@@ -391,7 +438,7 @@ function site_footer(): string
 {
     $c = S::$company;
     $h = '<footer class="ftr"><div class="container"><div class="ftr__grid">';
-    $h .= '<div class="ftr__brand"><b>' . esc($c['brand']) . '</b>'
+    $h .= '<div class="ftr__brand"><a class="ftr__logo" href="' . href('/') . '" aria-label="На главную"><img src="' . href('/img/logo-164.png') . '" srcset="' . href('/img/logo-328.png') . ' 2x" width="164" height="46" alt="ДСО" loading="lazy"></a><b>' . esc($c['brand']) . '</b>'
         . '<p class="small" style="margin:8px 0 12px">Производство и поставка запасных частей, расходных материалов и оборудования для дробильно-сортировочного, горно-добывающего и дорожно-строительного оборудования.</p>'
         . '<p class="ftr__contact">' . phone_link('', false) . '<br><a href="mailto:' . esc(company_email()) . '" data-goal="click_email">' . esc(company_email()) . '</a><br>'
         . esc($c['schedule']) . '</p>'
@@ -465,7 +512,7 @@ function org_ld(): array
         'legalName' => $c['legal_full'],
         'alternateName' => ['ЗДСО', 'Завод ДСО'],
         'url' => abs_url('/'),
-        'logo' => abs_url('/img/logo.svg'),
+        'logo' => abs_url('/img/logo.png'),
         'taxID' => $c['inn'],
         'vatID' => $c['inn'],
         'identifier' => ['@type' => 'PropertyValue', 'name' => 'ОГРН', 'value' => $c['ogrn']],
@@ -645,7 +692,7 @@ function shell(array $o): string
     $h .= '<link rel="icon" href="' . href('/favicon.ico') . '" sizes="any">' . "\n";
     $h .= '<link rel="apple-touch-icon" href="' . href('/img/apple-touch-icon.png') . '">' . "\n";
     $h .= '<link rel="manifest" href="' . href('/site.webmanifest') . '">' . "\n";
-    $h .= '<meta name="theme-color" content="#1A1D21">' . "\n";
+    $h .= '<meta name="theme-color" content="#ffffff">' . "\n";
     $h .= '<link rel="preload" href="' . href('/fonts/manrope-cyrillic-700-normal.woff2') . '" as="font" type="font/woff2" crossorigin>' . "\n";
     $h .= '<link rel="preload" href="' . href('/fonts/manrope-cyrillic-400-normal.woff2') . '" as="font" type="font/woff2" crossorigin>' . "\n";
     $h .= '<style>' . critical_css() . '</style>' . "\n";
@@ -657,7 +704,7 @@ function shell(array $o): string
     $h .= metrika_html();
     $h .= '<a class="skip-link" href="#main">К основному содержанию</a>' . "\n";
     $h .= site_header($path);
-    $h .= '<main id="main">' . $o['body'] . '</main>';
+    $h .= '<main id="main">' . ($path === '/' ? '' : page_band($path, ($o['ogType'] ?? '') === 'product')) . $o['body'] . '</main>';
     $h .= site_footer();
     $h .= floating_contact();
     $h .= modal_html();
@@ -677,18 +724,19 @@ function shell(array $o): string
 /** Критический CSS первого экрана: инлайном, чтобы не ждать загрузки style.css. */
 function critical_css(): string
 {
-    return ':root{--graphite-800:#1a1d21;--amber-500:#e8761a;--steel-200:#c9d2da;--steel-400:#7d8c9b;--head-h:60px;--gut:16px;--max:1320px}'
+    return ':root{--brand-600:#1a6fd6;--brand-800:#0f4a96;--amber-500:#e8761a;--steel-200:#c9d2da;--steel-400:#7d8c9b;--head-h:60px;--gut:16px;--max:1320px}'
         . '@media(min-width:768px){:root{--gut:24px;--head-h:72px}}'
         . '*,*::before,*::after{box-sizing:border-box}'
         . 'body{margin:0;font-family:Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.55;color:#16191c;background:#fff;overflow-x:hidden}'
         . '.container{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}'
-        . '.hdr{position:sticky;top:0;z-index:400;background:var(--graphite-800);color:#fff}'
-        . '.hdr a{color:#fff;text-decoration:none}'
+        . '.hdr{position:sticky;top:0;z-index:400;background:#fff;color:#16191c;box-shadow:0 1px 0 #dde3e9}'
+        . '.hdr a{color:#16191c;text-decoration:none}'
         . '.hdr__top{display:flex;align-items:center;gap:12px;min-height:var(--head-h)}'
         . '.hdr__spacer{flex:1 1 auto}'
         . '.logo{display:flex;align-items:center;gap:10px;font-weight:800}'
-        . '.logo__mark{width:34px;height:34px;flex:0 0 auto}'
-        . '.hero{background:var(--graphite-800);color:#fff;padding:32px 0 36px}'
+        . '.logo__img{width:auto;height:36px}'
+        . '.hero{position:relative;overflow:hidden;background:var(--brand-800);color:#fff;padding:32px 0 36px}'
+        . '.pband{position:relative;overflow:hidden;background:var(--brand-800);min-height:120px}'
         . 'h1{margin:0 0 .5em;font-weight:800;line-height:1.15;font-size:clamp(1.6rem,1.25rem + 1.8vw,2.6rem)}'
         . '.hero h1{color:#fff}'
         . '[hidden]{display:none!important}';
