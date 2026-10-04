@@ -195,7 +195,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 .logo__t { display: none; flex-direction: column; line-height: 1.15; max-width: 210px; padding-left: 12px; border-left: 2px solid var(--line); }
 .logo__t b { font-size: .8rem; font-weight: 700; color: var(--ink); }
 .logo__t span { font-size: .66rem; font-weight: 600; color: var(--brand-700); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
-@media (min-width: 768px) { .logo__t { display: flex; } }
+@media (min-width: 1200px) { .logo__t { display: flex; } }
 
 .hdr__spacer { flex: 1 1 auto; }
 .hdr__tel { display: none; font-weight: 700; white-space: nowrap; }
@@ -220,6 +220,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 .icon-btn--tg:hover { background: #2b7fb8; }
 .icon-btn--max:hover { background: var(--max-grad); color: #fff; }
 .hdr__search-btn, .hdr__burger { display: inline-flex; }
+.hdr__cta { white-space: nowrap; }
 @media (min-width: 1200px) { .hdr__burger { display: none; } }
 
 /* синяя полоса меню во всю ширину окна, хотя сама навигация внутри .container */
@@ -259,9 +260,10 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 .mnav a:hover { background: var(--brand-50); text-decoration: none; }
 
 /* строка поиска в шапке */
+/* Строка поиска в шапке скрыта на всех страницах и открывается лупой. Постоянный поиск —
+   в первом экране главной и в полосе с фото на внутренних страницах. */
 .hdr__search { display: none; padding: 0 0 12px; }
 .hdr__search.is-open { display: block; }
-@media (min-width: 1200px) { .hdr__search { display: block; padding: 10px 0; } }
 
 /* ---------- 6. Поиск по номеру чертежа ---------- */
 .search { position: relative; }
@@ -309,7 +311,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 .fact span { font-size: .82rem; color: #e6f0fc; }
 
 /* полоса с фото под шапкой внутренних страниц */
-.pband { position: relative; overflow: hidden; background: var(--brand-800); color: #fff; min-height: 120px; display: flex; align-items: flex-end; margin-bottom: 4px; }
+.pband { position: relative; background: var(--brand-800); color: #fff; min-height: 120px; display: flex; align-items: flex-end; margin-bottom: 4px; }
 @media (min-width: 768px) { .pband { min-height: 190px; } }
 .pband--slim { min-height: 64px; }
 @media (min-width: 768px) { .pband--slim { min-height: 96px; } }
@@ -318,7 +320,13 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
 .pband::before { content: ''; position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(90deg, rgba(11,58,120,.78) 0%, rgba(15,74,150,.4) 45%, rgba(26,111,214,.05) 100%); }
 .pband::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; z-index: 2; background: var(--amber-500); }
-.pband__in { position: relative; z-index: 2; width: 100%; padding-top: 18px; padding-bottom: 20px; text-shadow: 0 1px 14px rgba(11,58,120,.7); }
+.pband__in { position: relative; z-index: 2; width: 100%; padding-top: 18px; padding-bottom: 20px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 32px; }
+.pband__text { text-shadow: 0 1px 14px rgba(11,58,120,.7); min-width: 0; }
+.pband__search { display: none; flex: 0 1 520px; color: var(--ink); }
+@media (min-width: 992px) { .pband__search { display: block; } }
+.pband__search .search__input { border-color: transparent; box-shadow: 0 4px 18px rgba(11,58,120,.25); }
+.pband--slim .pband__search .search__input, .pband--slim .pband__search .btn { min-height: 44px; padding-top: 9px; padding-bottom: 9px; }
 .pband__t { display: block; font-size: clamp(1.15rem, 1rem + 1vw, 1.7rem); font-weight: 800; letter-spacing: -.01em; line-height: 1.15; }
 .pband__s { display: block; margin-top: 4px; font-size: .92rem; color: #dcebfb; }
 .pband--slim .pband__in { padding-top: 12px; padding-bottom: 14px; }
@@ -638,9 +646,7 @@ body.has-mbar .cookie { bottom: 64px; }
   .tscroll { overflow: visible; border: 0; }
 }
 
-/* На главной поиск есть в первом экране — компактный в шапке не дублируем. */
-body[data-page="/"] .hdr__search { display: none; }
-body[data-page="/"] .hdr__search.is-open { display: block; }
+
 
 /* ---------- 20. Защита от горизонтального выезда на узких экранах ---------- */
 /* clip, а не hidden: hidden у body делает его контейнером прокрутки, и закреплённая шапка (sticky) уезжает со страницей */
