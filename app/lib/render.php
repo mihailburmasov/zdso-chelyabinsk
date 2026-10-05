@@ -262,7 +262,7 @@ function messengers(string $text = ''): array
     ] as [$key, $label, $mod]) {
         $url = trim((string)($m[$key]['url'] ?? ''));
         // Предзаполненный текст поддерживает только WhatsApp; у Telegram ?text= работает
-        // не для личных чатов, у MAX параметра текста нет — там кнопка «скопировать запрос».
+        // не для личных чатов, у MAX параметра текста нет.
         if ($url !== '' && $key === 'whatsapp' && $q !== '') $url .= (str_contains($url, '?') ? '&' : '?') . 'text=' . $q;
         $out[] = ['key' => $key, 'label' => $label, 'mod' => $mod, 'url' => $url, 'prefill' => $key === 'whatsapp'];
     }
@@ -280,20 +280,15 @@ function messenger_icons(string $cls = 'hdr__msg'): string
 }
 
 /** Крупные кнопки мессенджеров (карточка товара, страница модели, контакты). */
-function messenger_buttons(string $text = '', string $copyLabel = ''): string
+function messenger_buttons(string $text = ''): string
 {
-    $html = '<div class="msgrow">' . join_map(messengers($text), function ($m) use ($text) {
+    return '<div class="msgrow">' . join_map(messengers($text), function ($m) {
         if ($m['url'] === '') {
             return '<span class="msgbtn msgbtn--off" title="Ссылка на ' . esc($m['label']) . ' уточняется">' . icon($m['key']) . esc($m['label']) . '</span>';
         }
         return '<a class="msgbtn msgbtn--' . $m['mod'] . '" href="' . esc($m['url']) . '" target="_blank" rel="noopener"'
             . ' data-goal="click_' . $m['key'] . '">' . icon($m['key']) . esc($m['label']) . '</a>';
     }) . '</div>';
-    if ($text !== '') {
-        $html .= '<button type="button" class="btn btn--ghost btn--sm copy-btn" data-copy="' . esc($text) . '" style="margin-top:8px">'
-            . icon('copy') . '<span>Скопировать запрос</span></button>';
-    }
-    return $html;
 }
 
 /* ------------------------------------------------------------------ формы */
